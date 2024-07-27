@@ -21,10 +21,6 @@ export async function getUrl(){
 export async function putImage(filename, file){
     await fetch(`${gatewayURL}/${filename}`, {
         method: "PUT",
-        headers:{
-            "Content-Type": "multipart/form-data",
-            "Access-Control-Allow-Origin": "*"
-        },
         body: file
     })
 }
