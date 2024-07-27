@@ -4,11 +4,13 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import {Button, Form} from 'react-bootstrap/';
 import * as Icon from 'react-bootstrap-icons';
-import { getUrl } from './fileService';
+import { getUrl, putImage } from './fileService';
+
 
 
 function App() {
   const [count, setCount] = useState(0)
+  
 
   let imageInput = document.querySelector('#FileButton')
   
@@ -16,12 +18,15 @@ function App() {
   const handleUpload = async (event)=>{
     event.preventDefault()
     console.log("File uploading")
-    console.log(`file: ${imageInput.files[0]}`)
 
+    //console.log(`value: ${imageInput.value.split('\\')}`)
+    
+    let filename = imageInput.value.split("path\\")[1]
     const file = imageInput.files[0]
 
+    console.log(`fetching in the same file`)
 
-    
+    putImage(filename, file)
     
 
 
@@ -59,7 +64,7 @@ function App() {
           <h1>What is this?</h1>
         </div>
         <div className='Main'>
-          <h1>Upload an iage and I'll  tell you what it is</h1>
+          <h1>Upload an image and I'll  tell you what it is</h1>
 
           <Form 
             onSubmit={(event)=>handleUpload(event)}
