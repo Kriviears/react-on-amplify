@@ -6,7 +6,7 @@ export function RekogResults() {
     
     useEffect(()=>{
         const  data = getData()
-        console.log(data)
+        console.log("Api data: ", data)
         setMessage[data]
     }, [])
 

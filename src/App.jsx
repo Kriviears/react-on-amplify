@@ -5,7 +5,6 @@ import './App.css'
 import {Button, Form} from 'react-bootstrap/';
 import * as Icon from 'react-bootstrap-icons';
 import { getUrl, putImage } from './fileService';
-import { GatewayCall } from './components/GatewayCall';
 import {RekogResults} from './components/rekogResults';
 
 
