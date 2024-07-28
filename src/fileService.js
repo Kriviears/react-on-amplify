@@ -21,21 +21,19 @@ export async function putImage(filename, file){
     // console.log(`${gatewayURL}/what-is-this-thing/${filename}`)
     await fetch(`${gatewayURL}/what-is-this-thing/${filename}`, {
         method: "PUT",
-        headers:{
-            'Access-Control-Allow-Origin': '*'
-        },
         body: file
     })
 }
 
 export async function getData(){
+    console.log(`getting data`)
     await fetch(`${gatewayURL}/data`)
         .then(response =>{
-            console.log(response.json())
-            if(!!response){
+            console.log(response)
+            
                 //finally the url
                 return response.body.toString().split('"')[3];
-            }
+            
         }).catch(error =>{
             console.log({message: error, source: "getData()"})
         })

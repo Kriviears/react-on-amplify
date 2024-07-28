@@ -26,14 +26,15 @@ function App() {
     let filename = imageInput.value.split("path\\")[1]
     const file = imageInput.files[0]
 
-    console.log(`fetching in the same file`)
+    console.log(`fetching in the same file`, filename)
 
-    putImage(filename, file)
+    await putImage(filename, file).then(res => console.log("Put response: ",res))
     
 
     //get secure url from server
     const {url} =  await getUrl()
-    console.log("url: ",url)
+      .then(res =>{console.log( "url: ", res)})
+
 
 
 
