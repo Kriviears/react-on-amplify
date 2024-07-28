@@ -33,7 +33,7 @@ function App() {
 
     //get secure url from server
     const {url} =  await getUrl()
-    console.log(url)
+    console.log("url: ",url)
 
 
 

@@ -18,8 +18,12 @@ export async function getUrl(){
 
 
 export async function putImage(filename, file){
-    await fetch(`${gatewayURL}/${filename}`, {
+    // console.log(`${gatewayURL}/what-is-this-thing/${filename}`)
+    await fetch(`${gatewayURL}/what-is-this-thing/${filename}`, {
         method: "PUT",
+        headers:{
+            'Access-Control-Allow-Origin': '*'
+        },
         body: file
     })
 }
