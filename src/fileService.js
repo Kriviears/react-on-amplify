@@ -1,7 +1,6 @@
 import axios from 'axios'
 const baseURL = `http://localhost:8000/s3Url`
-const gatewayURL = `https://n3mhroo6vg.execute-api.us-east-1.amazonaws.com/perscholas/what-is-this-thing`
-
+const gatewayURL = `https://n3mhroo6vg.execute-api.us-east-1.amazonaws.com/perscholas`
 
 export async function getUrl(){
     const getURL = `${baseURL}`
@@ -23,4 +22,15 @@ export async function putImage(filename, file){
         method: "PUT",
         body: file
     })
+}
+
+export async function getData(){
+    await fetch(`${gatewayURL}/data`)
+        .then(response =>{
+            console.log(response.json())
+            if(!!response){
+                //finally the url
+                return response.body.toString().split('"')[3];
+            }
+        })
 }
