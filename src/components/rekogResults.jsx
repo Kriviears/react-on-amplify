@@ -1,23 +1,24 @@
 import React, {useEffect, useState} from 'react'
 import { getData } from '../fileService'
 
-export function RekogResults() {
-    const [message, setMessage] = useState("");
+export function RekogResults(props) {
+    const [imgSrc, setImgSrc] = useState(props.ImgUrl)
+    
     
     useEffect(()=>{
-        const  data = updateData()
-        console.log("Api data: ", data)
-        setMessage[data]
-    }, [])
+        console.log("rekog effect")
+        setImgSrc(props.ImgUrl)
+    }, [props.ImgUrl])
 
-    async function updateData(){
-        const  data = await getData()
-        return data
-    }
+    
 
 
   return (
-    <div>{message}</div>
+    <div>
+        <h1>
+            <img src={imgSrc} />
+        </h1>
+    </div>
   )
 }
 

@@ -11,10 +11,10 @@ import {RekogResults} from './components/rekogResults';
 
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [imgProp, setImgProp] = useState("test")
   
 
-  let imageInput = document.querySelector('#FileButton')
+  let imageInput = document.querySelector('#FileButton');
   
 
   const handleUpload = async (event)=>{
@@ -29,6 +29,9 @@ function App() {
     console.log(`fetching in the same file`, filename)
 
     await putImage(filename, file).then(res => console.log("Put response: ",res))
+
+    setImgProp(`https://what-is-this-thing.s3.amazonaws.com/${filename}`)
+    newRekog()
     
 
     //get secure url from server
@@ -57,8 +60,12 @@ function App() {
     const img = document.createElement("img")
     img.src = imageUrl
     document.getElementsByClassName("ServerResponse")[0].appendChild(img)
+    
   }
 
+  const newRekog = ()=>{
+    return imgProp
+  }
 
   return (
     <>
@@ -89,7 +96,7 @@ function App() {
           </Form>
 
           <div className='ServerResponse'>
-            <RekogResults />
+            <RekogResults ImgUrl={newRekog()}/>
           </div>
 
           
