@@ -4,7 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import {Button, Form} from 'react-bootstrap/';
 import * as Icon from 'react-bootstrap-icons';
-import { getUrl, putImage } from './fileService';
+import { getData, getUrl, putImage } from './fileService';
 import {RekogResults} from './components/rekogResults';
 
 
@@ -44,6 +44,9 @@ function App() {
         "Content-Type": "multipart/form-data"
       },
       body: file
+    })
+    .then(()=>{
+      getData()
     })
 
     const imageUrl = url.split('?')[0]
