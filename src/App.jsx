@@ -5,6 +5,9 @@ import './App.css'
 import {Button, Form} from 'react-bootstrap/';
 import * as Icon from 'react-bootstrap-icons';
 import { getUrl, putImage } from './fileService';
+import { GatewayCall } from './components/GatewayCall';
+import {RekogResults} from './components/rekogResults';
+
 
 
 
@@ -28,9 +31,6 @@ function App() {
 
     putImage(filename, file)
     
-
-
-
 
     //get secure url from server
     const {url} =  await getUrl()
@@ -85,7 +85,9 @@ function App() {
 
           </Form>
 
-          <div className='ServerResponse'></div>
+          <div className='ServerResponse'>
+            <RekogResults />
+          </div>
 
           
           
