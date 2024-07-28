@@ -32,5 +32,7 @@ export async function getData(){
                 //finally the url
                 return response.body.toString().split('"')[3];
             }
+        }).catch(error =>{
+            console.log({message: error, source: "getData()"})
         })
 }

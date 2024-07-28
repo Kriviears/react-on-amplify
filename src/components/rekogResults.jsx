@@ -5,10 +5,15 @@ export function RekogResults() {
     const [message, setMessage] = useState("");
     
     useEffect(()=>{
-        const  data = getData()
+        const  data = updateData()
         console.log("Api data: ", data)
         setMessage[data]
     }, [])
+
+    async function updateData(){
+        const  data = await getData()
+        return data
+    }
 
 
   return (
