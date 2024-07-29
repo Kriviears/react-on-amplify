@@ -1,22 +1,70 @@
 import React, {useEffect, useState} from 'react'
-import { getData } from '../fileService'
+import { RekognitionClient, DetectLabelsCommand } from "@aws-sdk/client-rekognition";
+
+
+
+
 
 export function RekogResults(props) {
     const [imgSrc, setImgSrc] = useState(props.ImgUrl)
+    const [filename, setFileName] = useState("")
+
+    let rekogResponse = ""
+    
+    
+    
+    const client = new RekognitionClient({
+        region: "us-east-1",
+        credentials: {
+            profile: 'amplify-dev',
+            accessKeyId: 'AKIATCKATARFB34DHPFK',
+            secretAccessKey: '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' 
+        }
+    })
+    const params = {
+        "Image": { 
+           "S3Object": { 
+              "Bucket": "what-is-this-thing",
+              "Name": imgSrc.split("/")[3]
+           }
+        },
+        "MaxLabels": 3,
+        "MinConfidence": 95,        
+    };
+
     
     
     useEffect(()=>{
-        console.log("rekog effect")
         setImgSrc(props.ImgUrl)
+        
     }, [props.ImgUrl])
 
-    
+    const detect_labels = async () =>{
+        try{
+            const response = await client.send(new DetectLabelsCommand(params));
+            console.log(response.Labels)
+            response.Labels.forEach(label =>{
+                console.log(`${label.Name}, and I'm ${label.Confidence}% sure`)
+                document.querySelector('.ResponseString').innerHTML += `${label.Name}, `
+                console.log("Instances: ")
+                label.Instances.forEach(instance =>{
+                    console.log(instance)
+                })
+                console.log("--------------------------")
+            })
+            return response;
+        } catch (err){
+            console.log("Error", err)
+        }
+        console.log("response string: ",rekogResponse)
+    }
 
 
   return (
     <div>
-        <h1>
-            <img src={imgSrc} />
+        <img onClick={()=>detect_labels()} src={imgSrc} />
+        <h1 className='ResponseString'>
+            {rekogResponse}
         </h1>
     </div>
   )

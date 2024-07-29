@@ -6,7 +6,7 @@ import {Button, Form} from 'react-bootstrap/';
 import * as Icon from 'react-bootstrap-icons';
 import { getData, getUrl, putImage } from './fileService';
 import {RekogResults} from './components/rekogResults';
-
+import { config } from 'dotenv';
 
 
 
