@@ -6,15 +6,19 @@ import {Button, Form} from 'react-bootstrap/';
 import * as Icon from 'react-bootstrap-icons';
 import { getData, getUrl, putImage } from './fileService';
 import {RekogResults} from './components/rekogResults';
-import { config } from 'dotenv';
+// import 'dotenv/config'
+
 
 
 
 function App() {
   const [imgProp, setImgProp] = useState("test")
   
+  
 
   let imageInput = document.querySelector('#FileButton');
+  console.log(import.meta.env)
+  
   
 
   const handleUpload = async (event)=>{

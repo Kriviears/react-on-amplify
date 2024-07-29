@@ -10,15 +10,19 @@ export function RekogResults(props) {
     const [filename, setFileName] = useState("")
 
     let rekogResponse = ""
+
+    const {VITE_accessKeyId, VITE_secretAccessKey} = import.meta.env
     
+
+
     
     
     const client = new RekognitionClient({
         region: "us-east-1",
         credentials: {
             profile: 'amplify-dev',
-            accessKeyId: 'AKIATCKATARFB34DHPFK',
-            secretAccessKey: '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' 
+            accessKeyId: VITE_accessKeyId,
+            secretAccessKey: VITE_secretAccessKey
         }
     })
     const params = {
@@ -31,6 +35,8 @@ export function RekogResults(props) {
         "MaxLabels": 3,
         "MinConfidence": 95,        
     };
+
+    // console.log(VITE_accessKeyId, VITE_secretAccessKey)
 
     
     
