@@ -17,8 +17,8 @@ function App() {
   
 
   let imageInput = document.querySelector('#FileButton');
-  console.log(import.meta.env)
-  
+
+
   
 
   const handleUpload = async (event)=>{

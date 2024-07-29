@@ -13,9 +13,6 @@ export function RekogResults(props) {
 
     const {VITE_accessKeyId, VITE_secretAccessKey} = import.meta.env
     
-
-
-    
     
     const client = new RekognitionClient({
         region: "us-east-1",
