@@ -5,6 +5,7 @@ import { RekognitionClient, DetectLabelsCommand } from "@aws-sdk/client-rekognit
 
 
 
+
 export function RekogResults(props) {
     const [imgSrc, setImgSrc] = useState(props.ImgUrl)
     const [filename, setFileName] = useState("")
@@ -18,8 +19,8 @@ export function RekogResults(props) {
         region: "us-east-1",
         credentials: {
             profile: 'amplify-dev',
-            accessKeyId: VITE_accessKeyId,
-            secretAccessKey: VITE_secretAccessKey
+            accessKeyId: String(VITE_accessKeyId).trim(),
+            secretAccessKey: String(VITE_secretAccessKey).trim()
         }
     })
     const params = {
@@ -33,7 +34,6 @@ export function RekogResults(props) {
         "MinConfidence": 95,        
     };
 
-    // console.log(VITE_accessKeyId, VITE_secretAccessKey)
 
     
     
@@ -43,6 +43,7 @@ export function RekogResults(props) {
     }, [props.ImgUrl])
 
     const detect_labels = async () =>{
+        document.querySelector('.ResponseString').innerHTML = "";
         try{
             const response = await client.send(new DetectLabelsCommand(params));
             console.log(response.Labels)
