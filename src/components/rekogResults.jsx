@@ -19,8 +19,8 @@ export function RekogResults(props) {
         region: "us-east-1",
         credentials: {
             profile: 'amplify-dev',
-            accessKeyId: String(VITE_accessKeyId).trim(),
-            secretAccessKey: String(VITE_secretAccessKey).trim()
+            accessKeyId: "AKIATCKATARFPDO36I5I",
+            secretAccessKey: "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"
         }
     })
     const params = {
